@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partial/head") %>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        color: black !important;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <%- include("../partial/nav") %>
+      <div class="row">
+        <div class="col">
+          <main style="height: 100vh; background-color: #ee82ee">
+            <h3 class="text-center">Welcome to Admin page</h3>
+            <hr />
+            <div class="row d-flex justify-content-center align-items-center">
+              <div class="col-md-3">
+                <form>
+                  <input
+                    type="text"
+                    name="uname"
+                    placeholder="Enter your name"
+                    id="uname"
+                    class="form-control"
+                  />
+                  <br />
+                  <input
+                    type="text"
+                    name="quali"
+                    placeholder="Enter your Qualification"
+                    id="quali"
+                    class="form-control"
+                  />
+                  <br />
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    id="phone"
+                    class="form-control"
+                  />
+                  <br />
+                  <div>
+                    <select name="dept" id="dep" class="form-control">
+                      <option value="mern">Mern</option>
+                      <option value="aws">aws</option>
+                      <option value="java">java</option>'
+                      <option value="python">python</option>
+                    </select>
+                  </div>
+                  <br />
+                  <button class="btn btn-success" id="reg">Register</button>
+                </form>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <%- include("../partial/footer") %>
+    </div>
+    <script>
+      let btn = document.getElementById("reg");
+
+      async function registerHandler(arg) {
+        try {
+          let res = await fetch("/admin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" }, 
+            body: JSON.stringify(arg),
+          });
+          let data = await res.json();
+          if (data) {
+            alert("created successful");
+             window.location.href = "/faculty";
+          }
+        } catch (error) {
+          alert(error.message);
+        }
+      }
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        let uname = document.getElementById("uname").value;
+        let quali = document.getElementById("quali").value;
+        let phone = document.getElementById("phone").value;
+        let dep = document.getElementById("dep").value;
+        let obj = {
+          id: Math.trunc(Math.random() * 1000),
+          name: uname,
+          qul: quali,
+          phone: phone,
+          course: dep,
+        };
+        registerHandler(obj);
+      });
+    </script>
+  </body>
+</html>

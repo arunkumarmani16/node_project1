@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partial/head") %>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        color: white !important;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <%- include("../partial/nav") %>
+      <div class="row">
+        <div class="col">
+          <main style="height: 100vh; background-color: #ee82ee">
+            <div class="row d-flex justify-content-evenly align-items-center">
+              <div class="col-md-6">
+                <img src="../assets/jsp.jpg" alt="img" class="img-fluid" />
+              </div>
+              <div class="col-md-6">
+                <h4 class="m-3">Welcome </h4>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Blanditiis iste quidem voluptas illum fuga at quos. Dolor
+                  accusamus asperiores voluptate, commodi sapiente eligendi est
+                  consequuntur soluta reprehenderit, dignissimos sequi ipsa.
+                </p>
+                
+                <button class="btn btn-info">download</button>
+              </div>
+            </div>
+            <hr/>
+            <div >
+              
+            </div>
+
+          </main>
+        </div>
+      </div>
+
+      <%- include("../partial/footer") %>
+    </div>
+  </body>
+</html>

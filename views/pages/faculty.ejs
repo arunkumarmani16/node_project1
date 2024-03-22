@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partial/head") %>
+</head>
+<body>
+    <div class="container-fluid">
+        <%- include("../partial/nav") %>
+       <div class="row d-flex">
+        <div class="col">
+            <main style="min-height: 100vh; background-color: #ee82ee">
+                <h1 class="text-center "><%= title %></h1>
+                <hr/>
+                <div class="row d-flex justify-content-evenly align-items-center">
+                    <% data.map((item)=>{ %>
+
+                        <div class="col-md-5 m-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4><%= item.name %></h4>
+                                <p><%= item.qul %></p>
+                                <p><%= item.course %></p>
+                                <p><%= item.phone %></p>
+                                <div>
+                                    <button class="btn btn-info"  >Edit</button>
+                                    <button class="btn btn-danger"onclick="deleteHandler(<%= item.id%>) ">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                   
+                </div>
+            </main>
+        </div>
+       </div>
+        <%- include("../partial/footer") %>
+    </div>  
+    <script>
+        async function deleteHandler(id){
+        try {
+            
+            let data=await fetch(`/faculty/${id}`,{method : "DELETE" })
+           let res= await data.json()
+            if(res.ok){
+                window.location.reload()
+                alert('successful delete')
+                
+            }
+        } catch (err) {
+           
+            alert(err.message)
+        }
+    }
+    </script>
+</body>
+</html>
