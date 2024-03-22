@@ -19,7 +19,7 @@ app.use((err,req,res,next)=>{
     }
 })
 
-//Middleware of Static
+//Middleware of Stati
 app.use(express.static("views"))
 //middllware ejs
 app.set("view engine","ejs")
